@@ -14,7 +14,8 @@
 <...>
 
 ## 設計書
-- [実装機能リスト](https://docs.google.com/spreadsheets/d/1OQD6vq2fL3nrmfQHtCHNrCzDviWceqJlR_hfket_eis/edit?usp=sharing)
+- 実装機能リスト
+　”https://docs.google.com/spreadsheets/d/1OQD6vq2fL3nrmfQHtCHNrCzDviWceqJlR_hfket_eis/edit?usp=sharing””
 
 ## 開発環境
 - OS：Linux(CentOS)
