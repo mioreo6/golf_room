@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_05_091400) do
+ActiveRecord::Schema.define(version: 2022_08_12_024222) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 2022_08_05_091400) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "customer_id", null: false
+    t.text "comment", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -39,4 +47,40 @@ ActiveRecord::Schema.define(version: 2022_08_05_091400) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+  create_table "favorites", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "post_id", null: false
+    t.integer "comment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "post_tags", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.text "body", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag_name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "comments", "customers"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "favorites", "comments"
+  add_foreign_key "favorites", "customers"
+  add_foreign_key "favorites", "posts"
+  add_foreign_key "post_tags", "posts"
+  add_foreign_key "post_tags", "tags"
+  add_foreign_key "posts", "customers"
 end
