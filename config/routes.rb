@@ -9,28 +9,20 @@ Rails.application.routes.draw do
    resources :customers, only: [:index, :show, :edit, :update]
  end
 
-  namespace :public do
-    get 'comments/index'
-    get 'comments/new'
-    get 'comments/create'
-    get 'comments/show'
+devise_scope :public do
+  root to: "public/homes#top"
+  get 'about' => 'public/homes#about', as: 'about'
+  resources :posts, module: 'public' do
+    resources :comments, except: [:update]
+    resources :favorites, only: [:index, :create, :destroy]
   end
-  namespace :public do
-    get 'posts/index'
-    get 'posts/new'
-    get 'posts/create'
-    get 'posts/show'
-    get 'posts/edit'
-    get 'posts/destroy'
-  end
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-  end
-  namespace :public do
-    get 'homes/top'
-    get 'homes/about'
-  end
+   get 'customers/show' => 'public/customers#show'
+   get 'customers/edit' => 'public/customers#edit'
+   patch 'customers' => 'public/customers#update'
+   get 'customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
+   patch 'customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
+end
+
 devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
