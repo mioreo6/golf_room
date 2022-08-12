@@ -1,25 +1,14 @@
 Rails.application.routes.draw do
 
+ namespace :admin do
+   root to: "homes#top"
+   resources :posts, only: [:index, :show, :destroy] do
+     resources :comments, only: [:index, :show, :destroy]
+     resources :favorites, only: [:index]
+   end
+   resources :customers, only: [:index, :show, :edit, :update]
+ end
 
-  namespace :admin do
-    get 'favorites/index'
-  end
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-  end
-  namespace :admin do
-    get 'comments/index'
-    get 'comments/show'
-  end
-  namespace :admin do
-    get 'posts/index'
-    get 'posts/show'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
   namespace :public do
     get 'comments/index'
     get 'comments/new'
