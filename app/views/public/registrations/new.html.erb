@@ -1,29 +1,47 @@
-<h2>Sign up</h2>
+<div class="container pt-3">
 
+<h6 class="ml-5 mb-3">新規会員登録</h6>
+<div class="row text-center">
+<div class="col-10">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <label class="col-md-3"><%= f.label "ユーザー名" %></label>
+    <%= f.text_field :name, placeholder: "hana" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    <label class="col-md-3"><%= f.label "メールアドレス" %></label>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Sample@example.com" %>
+  </div>
+
+  <div class="field">
+    <label class="col-md-3"><%= f.label "パスワード" %></label>
+
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <label class="col-md-3"><%= f.label "パスワート(確認用)" %></label>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="actions text-center">
+    <label class="col-md-3 mx-auto">
+    <%= f.submit "新規登録" %>
+    </label>
   </div>
 <% end %>
 
-<%= render "public/shared/links" %>
+
+</div>
+</div>
+
+<h6 class="ml-5 mb-3 mt-5">既に会員の方</h6>
+<div class="row">
+<div class="col-3 mx-auto">
+<%= render "public/shared/links" %>ページへ
+</div>
+</div>
+</div>
