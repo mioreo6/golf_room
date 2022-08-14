@@ -1,2 +1,40 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container pt-3">
+<div class="row text-center">
+  <div class="col-7 cover-img mx-auto" >
+     <div class="card">
+       <%= image_tag 'golfs',width: '100%', height: '70%', class:"d-block mx-auto background-image" %>
+     <div class="card-img-overlay text-black font-weight-bold d-flex align-items-center" >
+     <h3 class="mx-auto">Welcome To GOLF's Room</h3>
+
+     </div>
+     </div>
+   </div>
+</div>
+
+
+<div class="row text-center mt-3">
+  <div class="col-7 mx-auto">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>新着投稿</th>
+        </tr>
+      </thead>
+      <% @posts.each do |post| %>
+      <tbody>
+        <tr>
+          <td><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+          <td><%= post.body %></td>
+          <td><%= post.customer.name %></td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
+  <div class="col-11 text-right">
+     <%= link_to 'もっと見る･･･', posts_path %>
+   </div>
+
+</div>
+
+</div>
