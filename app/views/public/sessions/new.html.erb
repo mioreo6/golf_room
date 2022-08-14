@@ -1,26 +1,42 @@
-<h2>Log in</h2>
+<div class="container pt-3">
+
+<h6 class="ml-5 mb-3">ログイン</h6>
+<div class="row text-center">
+<div class="col-10">
+
+
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
   <div class="field">
-    <%= f.label :email %><br />
+    <label class="col-md-3"><%= f.label "メールアドレス" %></label>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
+    <label class="col-md-3"><%= f.label "パスワード" %></label>
     <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
 
   <% if devise_mapping.rememberable? %>
     <div class="field">
+      <label class="col-md-3"></label>
       <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label "記憶する" %>
     </div>
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "ログイン" %>
   </div>
 <% end %>
+</div>
+</div>
 
-<%= render "public/shared/links" %>
+<h6 class="ml-5 mb-3 mt-5">まだ会員でない方</h6>
+<div class="row">
+<div class="col-3 mx-auto">
+<%= render "public/shared/links" %>ページへ
+</div>
+</div>
+</div>
