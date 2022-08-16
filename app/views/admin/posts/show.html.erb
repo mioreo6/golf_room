@@ -1,2 +1,10 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-10 mx-auto">
+        <span>投稿詳細</span></br>
+        <%= @post.body %></br>
+        <%= @post.customer.name %></br>
+         <p>コメント(<%= @post.comments.count %>),いいね(<%= @post.favorite.count %>)</p>
+    </div>
+  </div>
+</div>

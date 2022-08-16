@@ -18,6 +18,12 @@
       <label class="col-3">メールアドレス</label>
       <%= @customer.email%></br>
       </div>
+      <div>
+      <label class="col-3">ステータス</label>
+          <% if @customer.is_deleted == false %><span class="text-success font-weight-bold">有効</span>
+          <% else %><span class="text-secondary font-weight-bold">退会</span>
+          <% end %></br>
+      </div>
       <div class="col-2 mx-auto">
         <span class="mx-auto">
       <%= link_to edit_admin_customer_path(@customer) do %>編集<% end %>
