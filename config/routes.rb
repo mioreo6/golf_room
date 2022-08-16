@@ -12,10 +12,12 @@ Rails.application.routes.draw do
 devise_scope :public do
   root to: "public/homes#top"
   get 'about' => 'public/homes#about', as: 'about'
-  resources :posts, module: 'public' do
+  post 'posts/new' => 'public/posts#create'
+  resources :posts, except: [:create], module: 'public' do
     resources :comments, except: [:update]
     resources :favorites, only: [:index, :create, :destroy]
   end
+
    get 'customers/show' => 'public/customers#show'
    get 'customers/edit' => 'public/customers#edit'
    patch 'customers' => 'public/customers#update'

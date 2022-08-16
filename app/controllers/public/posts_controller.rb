@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   def index
+    @posts = Post.all
   end
 
   def new
@@ -8,11 +9,14 @@ class Public::PostsController < ApplicationController
 
   def create
     post = Post.new(post_params)
+    post.customer_id = current_customer.id
+    
     post.save
     redirect_to root_path
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   def edit
@@ -23,6 +27,6 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:body, :id, :created_at)
+    params.require(:post).permit(:body, :id, :created_at, :customer_id)
   end
 end

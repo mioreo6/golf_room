@@ -1,7 +1,7 @@
 <div class="container pt-3">
 <div class="row text-center">
 <div class="col-10 mx-auto">
-  <%= form_with model: @post, url: posts_path, method: :post do |f| %>
+  <%= form_with model: @post, url: posts_new_path, method: :post, local: true do |f| %>
   <div class="col-5 mx-auto">
     新規投稿</br>
   </div>

@@ -1,2 +1,33 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<div class="container pt-3">
+  <div class="row mx-auto">
+    <div class="col-9 text-center">
+      <div class="mx-auto">
+
+      <%= image_tag @customer.get_profile_image(100,100) %>
+
+      <span class="col-6 border rounded-pill">
+        <%= @customer.introduction %>
+      </span>
+
+      </div>
+      <div>
+      <label class="col-3">ユーザ名</label>
+      <%= @customer.name %></br>
+      </div>
+      <div>
+      <label class="col-3">メールアドレス</label>
+      <%= @customer.email%></br>
+      </div>
+      <div class="col-2 mx-auto">
+        <span class="mx-auto">
+      <%= link_to edit_admin_customer_path(@customer) do %>編集<% end %>
+        <span>
+      </div>
+    </div>
+    <div class="col-3">
+      <%= link_to admin_posts_path do %>・投稿一覧<% end %></br>
+      <%= link_to root_path do %>・コメント一覧<% end %></br>
+      <%= link_to root_path do %>・いいね一覧<% end %></br>
+    </div>
+  </div>
+</div>
