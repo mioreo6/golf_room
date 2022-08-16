@@ -5,6 +5,7 @@
         <%= @post.body %></br>
         <%= @post.customer.name %></br>
          <p>コメント(<%= @post.comments.count %>),いいね(<%= @post.favorite.count %>)</p>
+         <%= link_to '削除する', admin_post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-success mr-5" %>
     </div>
   </div>
 </div>
