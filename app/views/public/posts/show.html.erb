@@ -1,6 +1,8 @@
 <div class="container pt-3">
 <div class="row text-center">
-  <%= post.body %>
-  
+  <%= @post.body %></br>
+  <% @post.tags.each do |tag| %>
+    <span><%= tag.tag_name %></span>
+<% end %>
 </div>
 </div>

@@ -27,6 +27,6 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:body, :id, :created_at, :customer_id)
+    params.require(:post).permit(:body, :id, :created_at, :customer_id, tag_ids: [])
   end
 end

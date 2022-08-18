@@ -7,6 +7,16 @@
   </div>
   <div>
     <%= f.text_area :body, placeholder: "思ったことを書こう！", class:"col-6" %>
+    </div></br>
+       <div class='form-group'>
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :tag_name) do |tag| %>
+            <div class='form-check'>
+                <%= tag.label class: 'form-check-label' do %>
+                    <%= tag.check_box class: 'form-check-input' %>
+                    <%= tag.text %>
+                <% end %>
+            </div>
+        <% end %>
     </div>
     <%= f.submit '投稿する', class:"btn btn-success px-5 col-2"%>
 <% end %>
