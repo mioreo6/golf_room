@@ -1,8 +1,17 @@
 <div class="container pt-3">
-<div class="row text-center">
-  <%= @post.body %></br>
-  <% @post.tags.each do |tag| %>
-    <span><%= tag.tag_name %></span>
-<% end %>
-</div>
+  <div class="row">
+    <div class="col-10 mx-auto">
+        <span>投稿詳細</span></br>
+        <%= @post.body %></br>
+          <% @post.tags.each do |tag| %>
+           <span>#<%= tag.tag_name %></span>
+          <% end %></br>
+        <%= @post.customer.name %></br>
+         <p>コメント(<%= @post.comments.count %>),いいね(<%= @post.favorites.count %>)</p>
+         <% if @post.customer == current_customer %>
+          <%= link_to '編集する', edit_post_path(@post), class:"btn btn-success mr-5" %>
+         <%= link_to '削除する', post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-success mr-5" %>
+         <% end %>
+    </div>
+  </div>
 </div>
