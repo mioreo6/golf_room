@@ -34,7 +34,7 @@
     　<li class="nav-item btn btn-outline-secondary "><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "text-dark" %>
       </li>
       <% elsif customer_signed_in? %>
-       <li class="nav-item btn btn-outline-secondary "><%= link_to "マイページ",  customers_show_path, method: :get, class: "text-dark" %>
+       <li class="nav-item btn btn-outline-secondary "><%= link_to "マイページ",  customer_path(current_customer.id), method: :get, class: "text-dark" %>
       </li>
        <li class="nav-item btn btn-outline-secondary "><%= link_to "投稿一覧", posts_path, method: :get, class: "text-dark" %>
       </li>

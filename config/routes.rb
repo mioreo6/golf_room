@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+devise_for :customers,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
+
  namespace :admin do
    root to: "homes#top"
    resources :posts, only: [:index, :show, :destroy] do
@@ -18,9 +23,8 @@ devise_scope :public do
     resources :favorites, only: [:index, :create, :destroy]
   end
 
-   get 'customers/show' => 'public/customers#show'
-   get 'customers/edit' => 'public/customers#edit'
-   patch 'customers' => 'public/customers#update'
+
+   resources :customers, only: [:show, :edit, :update], module: 'public'
    get 'customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
    patch 'customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
 end
