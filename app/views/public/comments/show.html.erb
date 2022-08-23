@@ -1,2 +1,10 @@
-<h1>Public::Comments#show</h1>
-<p>Find me in app/views/public/comments/show.html.erb</p>
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-10 mx-auto">
+        <span>コメント詳細</span></br>
+        <%= @comment.comment %></br>
+        <%= @comment.customer.name %></br>
+         <%= link_to '削除する', post_comment_path(@post,@comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-success mr-5" %>
+    </div>
+  </div>
+</div>

@@ -1,2 +1,21 @@
-<h1>Public::Comments#index</h1>
-<p>Find me in app/views/public/comments/index.html.erb</p>
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <table class="table">
+        <thead >
+          <tr>
+            <th class="text-center">コメント一覧</th>
+          </tr>
+        </thead>
+        <% @post.comments.each do |comment| %>
+        <tbody>
+
+          <td class="col-4"><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+          <td class="col-4"><%= link_to post_comment_path(@post,comment.id) do %><%= comment.comment %><% end %></td>
+          <td class="col-4"><%= link_to customers_show_path(comment.customer) do %><%= comment.customer.name %><% end %></td>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
