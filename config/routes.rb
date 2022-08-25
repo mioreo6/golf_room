@@ -23,16 +23,11 @@ devise_scope :public do
     resources :favorites, only: [:index, :create, :destroy]
   end
 
-
    resources :customers, only: [:show, :edit, :update], module: 'public'
    get 'customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
    patch 'customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
 end
 
-devise_for :customers,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
 
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
