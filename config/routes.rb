@@ -23,7 +23,11 @@ devise_scope :public do
     resources :favorites, only: [:index, :create, :destroy]
   end
 
-   resources :customers, only: [:show, :edit, :update], module: 'public'
+   resources :customers, only: [:show, :edit, :update], module: 'public' do
+       get '/comments' => 'comments#all'
+       get '/favorites' => 'favorites#all'
+       get '/posts' => 'posts#all'
+   end
    get 'customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
    patch 'customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
 end
