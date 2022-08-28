@@ -7,8 +7,24 @@
            <span>#<%= tag.tag_name %></span>
           <% end %></br>
         <%= @post.customer.name %></br>
-         <p>コメント<%= link_to post_comments_path(@post) do %>(<%= @post.comments.count %>)<% end %>,いいね(<%= @post.favorites.count %>)</p>
-         <%= link_to 'コメント', new_post_comment_path(@post), class:"btn btn-success mr-5" %>
+         <p>コメント<%= link_to post_comments_path(@post) do %>(<%= @post.comments.count %>)<% end %></p>
+
+         <!--いいね-->
+      <% if @post.favorited_by?(current_customer) %>
+    <p>
+      <%= link_to post_favorites_path(@post.id), method: :delete do %>
+        <%= @post.favorites.count %> いいね！
+      <% end %>
+    </p>
+    　<% else %>
+    <p>
+      <%= link_to post_favorites_path(@post.id), method: :post do %>
+    　<%= @post.favorites.count %>  いいね！！
+      <% end %>
+    </p>
+  　　<% end %>
+
+<%= link_to 'コメント', new_post_comment_path(@post), class:"btn btn-success mr-5" %>
          <% if @post.customer == current_customer %>
           <%= link_to '編集する', edit_post_path(@post), class:"btn btn-success mr-5" %>
          <%= link_to '削除する', post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-success mr-5" %>

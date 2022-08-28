@@ -19,8 +19,9 @@ devise_scope :public do
   get 'about' => 'public/homes#about', as: 'about'
   post 'posts/new' => 'public/posts#create'
   resources :posts, except: [:create], module: 'public' do
-    resources :comments, except: [:update]
-    resources :favorites, only: [:index, :create, :destroy]
+    resource :favorites, only: [:create, :destroy]
+    get '/comments' => 'comments#index'
+    resources :comments, except: [:update, :index]
   end
 
    resources :customers, only: [:show, :edit, :update], module: 'public' do
