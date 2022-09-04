@@ -4,15 +4,19 @@
       <table class="table">
         <thead >
           <tr>
-            <th class="text-center">コメント一覧(<%= @comments.comments.count %>)</th>
+            <th class="text-center">コメント一覧(<%= @post.comments.count %>)</th>
           </tr>
         </thead>
-        <% @comments.each do |comment| %>
+        </table>
+
+
+        <table class="table">
+        <% @post.comments.each do |comment| %>
         <tbody>
           <tr>
-            <td><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-             <td><%= link_to admin_post_comment(post.id)(@comment)><%= comment.comment %></td>
-            <td><%= comment.customer.name %></td>
+            <td class="col-3"><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+            <td class="col-6"><%= link_to admin_post_comment_path(@post,comment.id) do %><%= comment.comment %><% end %></td>
+            <td class="col-3"><%= comment.customer.name %></td>
           </tr>
         </tbody>
         <% end %>
