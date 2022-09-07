@@ -16,6 +16,7 @@ devise_for :customers,skip: [:passwords], controllers: {
 
 devise_scope :public do
   root to: "public/homes#top"
+  post '/homes/guest_sign_in' => 'public/homes#guest_sign_in'
   get 'about' => 'public/homes#about', as: 'about'
   post 'posts/new' => 'public/posts#create'
   resources :posts, except: [:create], module: 'public' do
