@@ -26,8 +26,8 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %><%= link_to 'ゲストログイン（閲覧用）', homes_guest_sign_in_path, method: :post %>
+  <div class="col-10 mx-auto">
+  <%= f.submit "ログイン", class:"btn btn-success mr-5" %><%= link_to 'ゲストログイン（閲覧用）', guest_sign_in_path, method: :post, class:"btn btn-success mr-5" %>
   </div>
 <% end %>
 </div>

@@ -2,7 +2,7 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
   end
-  
+
 
 
   def edit
@@ -13,6 +13,11 @@ class Public::CustomersController < ApplicationController
    customer = Customer.find(params[:id])
    customer.update(customer_params)
    redirect_to customer_path(customer)
+  end
+
+  def draft
+    # @customer = current_customer
+    @posts = current_customer.posts.where(is_draft: true)
   end
 
   private

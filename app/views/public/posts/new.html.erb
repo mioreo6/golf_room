@@ -18,7 +18,8 @@
             </div>
         <% end %>
     </div>
-    <%= f.submit '投稿する', class:"btn btn-success px-5 col-2"%>
+    <%= f.submit '投稿する', :name => 'body', class:"btn btn-success px-5 col-2"%>
+    <%= f.submit '下書きに保存', :name => 'draft', class: 'mr-5 btn btn-sm btn-outline-secondary' %>
 <% end %>
 </div>
 </div>
