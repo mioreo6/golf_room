@@ -34,6 +34,7 @@
     </div>
     <div class="col-3">
       <%= link_to customer_posts_path(@customer.id) do %>・投稿一覧<% end %></br>
+      <%= link_to customer_draft_path(@customer.id) do %>・下書き一覧<% end %></br>
       <%= link_to customer_comments_path(@customer.id) do %>・コメント一覧<% end %></br>
       <%= link_to customer_favorites_path(@customer.id) do %>・いいね一覧<% end %></br>
     </div>

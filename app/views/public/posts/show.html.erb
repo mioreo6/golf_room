@@ -1,12 +1,24 @@
 <div class="container pt-3">
-  <div class="row">
-    <div class="col-10 mx-auto">
-        <span>投稿詳細</span></br>
-        <%= @post.body %></br>
+  <div class="row ">
+    <div class="col-10 mx-auto text-center">
+
+
+        <!--公開/非公開で表示の切り替え-->
+        <% if @post.is_draft == false %>
+        <h5>投稿詳細</h5>
+        <% else%>
+        <h5>下書き（非公開）<h5>
+        <% end %>
+      <div class="col-5 mx-auto text-center border border-dark mb-3">
+        <p><%= @post.body %></p>
+
           <% @post.tags.each do |tag| %>
            <span>#<%= tag.tag_name %></span>
-          <% end %></br>
-        <%= @post.customer.name %></br>
+          <% end %>
+        <p class="border-top">name: <%= @post.customer.name %></p>
+
+        <% if @post.is_draft == false %><!--公開している場合のみ表示-->
+
          <p>コメント<%= link_to post_comments_path(@post) do %>(<%= @post.comments.count %>)<% end %></p>
 
          <!--いいね-->
@@ -21,12 +33,19 @@
       <%= link_to post_favorites_path(@post.id), method: :post do %>
     　<%= @post.favorites.count %>♡
       <% end %>
+      <% end %>
     </p>
   　　<% end %>
+    </div>
 
-<%= link_to 'コメント', new_post_comment_path(@post), class:"btn btn-success mr-5" %>
+　　<% if @post.is_draft == false %><!--公開している場合のみ表示-->
+　　　　　<%= link_to 'コメント', new_post_comment_path(@post), class:"btn btn-success mr-5" %>
+　　<% end %>
+
          <% if @post.customer == current_customer %>
           <%= link_to '編集する', edit_post_path(@post), class:"btn btn-success mr-5" %>
+
+
          <%= link_to '削除する', post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-success mr-5" %>
          <% end %>
     </div>
