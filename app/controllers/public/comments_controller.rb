@@ -1,7 +1,10 @@
 class Public::CommentsController < ApplicationController
   def index
     @post = Post.find(params[:post_id])
+  end
 
+  def all
+    @post = current_customer.comment
   end
 
   def new

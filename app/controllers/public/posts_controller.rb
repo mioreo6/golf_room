@@ -1,7 +1,26 @@
 class Public::PostsController < ApplicationController
   def index
     #@posts = Post.all.search(params[:search])
-    @posts = Post.where(is_draft: :false).all.search(params[:search])
+    # @posts =Post.where(is_draft: :false).all.search(params[:search])
+  @posts= Post.all
+  @tags = Tag.all
+  @posts = @posts.where("body LIKE ? ",'%' + params[:search] + '%') if params[:search].present?
+  #もしタグ検索したら、post_idsにタグを持ったidをまとめてそのidで検索
+  if params[:tag_ids].present?
+    post_ids = []
+    params[:tag_ids].each do |key, value|
+      if value == "1"
+        Tag.find_by(tag_name: tag_ids).posts.each do |p|
+          post_ids << p.id
+        end
+      end
+    end
+    post_ids = post_ids.uniq
+    #キーワードとタグのAND検索
+    @posts = @posts.where(id: post_ids) if post_ids.present?
+  end
+
+
   end
 
   def new
