@@ -7,6 +7,7 @@ class CreatePostTags < ActiveRecord::Migration[6.1]
       t.timestamps
     end
     add_foreign_key :post_tags, :posts
+    add_foreign_key :post_tags, :tags
    
   end
 end
