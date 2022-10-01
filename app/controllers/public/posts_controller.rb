@@ -2,26 +2,22 @@ class Public::PostsController < ApplicationController
   def index
     #@posts = Post.all.search(params[:search])
     # @posts =Post.where(is_draft: :false).all.search(params[:search])
-  @posts= Post.all
-  @tags = Tag.all
-  @posts = @posts.where("body LIKE ? ",'%' + params[:search] + '%') if params[:search].present?
-  #もしタグ検索したら、post_idsにタグを持ったidをまとめてそのidで検索
-  if params[:tag_ids].present?
-    post_ids = []
-    params[:tag_ids].each do |key, value|
-      if value == "1"
-        Tag.find_by(tag_name: tag_ids).posts.each do |p|
-          post_ids << p.id
-        end
-      end
-    end
-    post_ids = post_ids.uniq
-    #キーワードとタグのAND検索
-    @posts = @posts.where(id: post_ids) if post_ids.present?
+
+   @tags = Tag.all
+   if params[:tag_id].present?
+     if params[:search].present?
+        @posts = Tag.find(params[:tag_id]).search(params[:search])
+     else
+      @posts = Tag.find(params[:tag_id]).posts
+     end
+   elsif params[:search].present?
+       @posts = Post.where(is_draft: :false).all.search(params[:search])
+   else
+      @posts = Post.where(is_draft: :false).all
+   end
   end
 
 
-  end
 
   def new
     @post = Post.new
@@ -60,15 +56,15 @@ class Public::PostsController < ApplicationController
     @post.customer_id = current_customer.id
 
    if @post.is_draft == false
-    if params[:body]
+    if params[:body] #下書き（非公開）→投稿（公開）
       @post.save
       redirect_to posts_path
-    elsif params[:update_draft]
+    elsif params[:update_draft] #下書き（非公開）のまま更新
       @post.update
       redirect_to posts_path(@post)
     end
    else
-     if @post.update(post_params)
+     if @post.update(post_params) #投稿の更新
        redirect_to posts_path
      else
        render :edit
@@ -89,4 +85,5 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:body, :id, :created_at, :customer_id, :is_draft, tag_ids: [])
   end
- end
+
+end
