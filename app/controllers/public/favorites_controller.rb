@@ -12,4 +12,14 @@ class Public::FavoritesController < ApplicationController
     favorite.destroy
     redirect_to post_path(@post)
   end
+
+  def all
+    @favorites = current_customer.favorites
+  end
+
+  private
+   def favorite_params
+   params.require(:favorites).permit(:post_id, :favorites)
+   end
 end
+
