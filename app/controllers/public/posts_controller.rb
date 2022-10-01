@@ -17,6 +17,9 @@ class Public::PostsController < ApplicationController
    end
   end
 
+ def all
+  @posts = current_customer.posts.where(is_draft: false)
+ end
 
 
   def new

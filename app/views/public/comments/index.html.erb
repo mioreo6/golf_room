@@ -1,19 +1,22 @@
 <div class="container pt-3">
   <div class="row">
     <div class="col-10 mx-auto">
-      <table class="table">
+      <table class="table mt-3">
         <thead >
           <tr>
             <th class="text-center">コメント一覧</th>
           </tr>
         </thead>
+        </table>
+
+        <table class="mx-auto table">
         <% @post.comments.each do |comment| %>
-        <tbody>
+
 
           <td class="col-4"><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></td>
           <td class="col-4"><%= link_to  post_comment_path(@post,comment.id) do %><%= comment.comment %><% end %></td>
           <td class="col-4"><%= link_to customer_path(comment.customer.id) do %><%= comment.customer.name %><% end %></td>
-        </tbody>
+
         <% end %>
       </table>
     </div>

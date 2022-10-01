@@ -1,1 +1,27 @@
-all post
+<div class="container pt-3">
+<div class="row text-center">
+ 
+  <div class="col-10 mx-auto">
+      <table class="table mt-3">
+        <thead>
+          <tr>
+            <th class="text-center">投稿一覧</th>
+          </tr>
+        </thead>
+        </table>
+
+        <table class="mx-auto table">
+        <% @posts.each do |post| %>
+
+
+          <tr>
+            <td class="col-3"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+            <td class="col-6"><%= link_to post_path(post.id) do %><%= post.body %><% end %></td>
+            <td class="col-3"><%= post.customer.name %></td>
+          </tr>
+
+        <% end %>
+      </table>
+  </div>
+</div>
+</div>
