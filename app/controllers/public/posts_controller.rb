@@ -40,7 +40,6 @@ class Public::PostsController < ApplicationController
     else
       render :new
     end
-
   end
 
   def show
@@ -55,8 +54,9 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.customer_id = current_customer.id
 
-   if @post.is_draft == false
+   if @post.is_draft == true
     if params[:body] #下書き（非公開）→投稿（公開）
+      @post.is_draft = false
       @post.save
       redirect_to posts_path
     elsif params[:update_draft] #下書き（非公開）のまま更新
