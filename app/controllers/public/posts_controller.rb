@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_customer!,except: [:index]
   def index
     #@posts = Post.all.search(params[:search])
     # @posts =Post.where(is_draft: :false).all.search(params[:search])
