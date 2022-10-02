@@ -1,5 +1,13 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_customer!,except: [:index]
+  before_action :guest_customer, except: [:index, :show]
+
+  def guest_customer
+    if current_customer.email == 'guest@example.com'
+      redirect_to root_path, notice: "ゲストユーザーは閲覧のみです。"
+    end
+  end
+
   def index
     #@posts = Post.all.search(params[:search])
     # @posts =Post.where(is_draft: :false).all.search(params[:search])

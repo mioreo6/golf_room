@@ -1,4 +1,11 @@
 class Public::CustomersController < ApplicationController
+  before_action :guest_customer, except: [:show]
+  def guest_customer
+    if current_customer.email == 'guest@example.com'
+      redirect_to root_path, notice: "ゲストユーザーは閲覧のみです。"
+    end
+  end
+  
   def show
     @customer = Customer.find(params[:id])
   end

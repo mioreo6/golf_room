@@ -1,4 +1,5 @@
 <div class="container pt-3">
+  <%= flash[:notice] %>
 <div class="row text-center">
   <div class="col-6 mx-auto">
   <%= form_with model: @post, url: post_path(@post), method: :patch, local: true do |f| %>

@@ -33,7 +33,9 @@
 
          <div>
          <label class="col-3"></label>
+         <% if @customer.email != 'guest@example.com' %>
          <%= f.submit '変更を保存', class:"btn btn-success px-5" %>
+         <% end %>
          </div>
 
         <% end %>

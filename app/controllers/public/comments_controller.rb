@@ -1,4 +1,13 @@
 class Public::CommentsController < ApplicationController
+  before_action :authenticate_customer!,except: [:index]
+  before_action :guest_customer, except: [:index, :show]
+  
+  def guest_customer
+    if current_customer.email == 'guest@example.com'
+      redirect_to root_path, notice: "ゲストユーザーは閲覧のみです。"
+    end
+  end
+  
   def index
     @post = Post.find(params[:post_id])
   end
