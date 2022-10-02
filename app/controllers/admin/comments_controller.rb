@@ -4,6 +4,7 @@ class Admin::CommentsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
   end
 
