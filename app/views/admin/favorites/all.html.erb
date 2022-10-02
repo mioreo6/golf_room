@@ -1,0 +1,23 @@
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <table class="table">
+        <thead >
+          <tr>
+            <th class="text-center">いいねした一覧</th>
+          </tr>
+        </thead>
+        </table>
+
+        <table class="mx-auto table">
+        <% @favorites.each do |favorite| %>
+
+          <td class="col-4"><%= favorite.post.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+          <td class="col-4"><%= link_to admin_post_path(favorite.post.id) do %><%= favorite.post.body %><% end %></td>
+          <td class="col-4"><%= favorite.customer.name %></td>
+
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
