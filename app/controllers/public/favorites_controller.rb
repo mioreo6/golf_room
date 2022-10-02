@@ -1,4 +1,11 @@
 class Public::FavoritesController < ApplicationController
+  before_action :guest_customer, except: [:all]
+   def guest_customer
+    if current_customer.email == 'guest@example.com'
+      redirect_to root_path, notice: "ゲストユーザーは閲覧のみです。会員登録をお願いします。"
+    end
+   end
+
   def create
     @post = Post.find(params[:post_id])
     favorite = current_customer.favorites.new(post_id: @post.id)
@@ -14,7 +21,8 @@ class Public::FavoritesController < ApplicationController
   end
 
   def all
-    @favorites = current_customer.favorites
+    @customer = Customer.find(params[:customer_id])
+    @favorites = @customer.favorites
   end
 
   private

@@ -1,6 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_customer!,except: [:index]
-  before_action :guest_customer, except: [:index, :show]
+  before_action :guest_customer, except: [:index, :show, :all]
 
   def guest_customer
     if current_customer.email == 'guest@example.com'
@@ -27,7 +27,8 @@ class Public::PostsController < ApplicationController
   end
 
  def all
-  @posts = current_customer.posts.where(is_draft: false)
+  @customer = Customer.find(params[:customer_id])
+  @posts = @customer.posts.where(is_draft: false)
  end
 
 
