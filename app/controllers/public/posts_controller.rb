@@ -48,7 +48,7 @@ class Public::PostsController < ApplicationController
         redirect_to customer_path(current_customer), notice: "下書き保存しました！"
       # 投稿(公開)の場合
       else
-        redirect_to root_path, notice: "投稿しました！"
+        redirect_to posts_path, notice: "投稿しました！"
       end
     else
       render :new

@@ -28,7 +28,7 @@ class Public::CommentsController < ApplicationController
     @comment.customer_id = current_customer.id
     @comment.post_id = post.id
     @comment.save
-    redirect_to '/posts'
+    redirect_to post_path(@comment.post.id)
   end
 
   def destroy
