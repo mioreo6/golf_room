@@ -11,11 +11,16 @@ end
 
  namespace :admin do
    root to: "homes#top"
+
    resources :posts, only: [:index, :show, :destroy] do
      resources :comments, only: [:index, :show, :destroy]
      resources :favorites, only: [:index]
    end
-   resources :customers, only: [:index, :show, :edit, :update]
+   resources :customers, only: [:index, :show, :edit, :update] do
+    get '/comments' => 'comments#all'
+    get '/favorites' => 'favorites#all'
+    get '/posts' => 'posts#all'
+   end
  end
 
 devise_scope :public do

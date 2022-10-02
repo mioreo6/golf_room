@@ -1,0 +1,22 @@
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <table class="table">
+        <thead >
+          <tr>
+            <th class="text-center">コメント一覧</th>
+          </tr>
+        </thead>
+        </table>
+
+        <table class="mx-auto table">
+        <% @post.each do |comment| %>
+
+          <td class="col-4"><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+          <td class="col-4"><%= link_to admin_post_path(comment.post.id) do %><%= comment.comment %><% end %></td>
+          <td class="col-4"><%= comment.customer.name %></td>
+
+        <% end %>
+    </div>
+  </div>
+</div>
