@@ -15,20 +15,20 @@ class Public::PostsController < ApplicationController
    @tags = Tag.all
    if params[:tag_id].present?
      if params[:search].present?
-        @posts = Tag.find(params[:tag_id]).search(params[:search])
+        @posts = Tag.find(params[:tag_id]).search(params[:search]).page(params[:page]).per(5)
      else
-      @posts = Tag.find(params[:tag_id]).posts
+      @posts = Tag.find(params[:tag_id]).posts.page(params[:page]).per(5)
      end
    elsif params[:search].present?
-       @posts = Post.where(is_draft: :false).all.search(params[:search])
+       @posts = Post.where(is_draft: :false).page(params[:page]).per(5).search(params[:search])
    else
-      @posts = Post.where(is_draft: :false).all
+      @posts = Post.page(params[:page]).per(5).where(is_draft: :false)
    end
   end
 
  def all
   @customer = Customer.find(params[:customer_id])
-  @posts = @customer.posts.where(is_draft: false)
+  @posts = @customer.posts.where(is_draft: false).page(params[:page]).per(15)
  end
 
 

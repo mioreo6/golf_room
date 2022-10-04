@@ -5,6 +5,6 @@ class Admin::FavoritesController < ApplicationController
 
   def all
     @customer = Customer.find(params[:customer_id])
-    @favorites = @customer.favorites
+    @favorites = @customer.favorites.page(params[:page]).per(15)
   end
 end

@@ -6,7 +6,7 @@ class Admin::CommentsController < ApplicationController
 
   def all
     @customer = Customer.find(params[:customer_id])
-    @post = @customer.comment
+    @post = @customer.comment.page(params[:page]).per(15)
   end
 
   def show
