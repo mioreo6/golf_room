@@ -11,11 +11,11 @@
 
         <table class="mx-auto table">
         <% @favorites.each do |favorite| %>
-
+          <tr>
           <td class="col-4"><%= favorite.post.created_at.strftime('%Y/%m/%d %H:%M') %></td>
           <td class="col-4"><%= link_to post_path(favorite.post.id) do %><%= favorite.post.body %><% end %></td>
           <td class="col-4"><%= favorite.customer.name %></td>
-
+          </tr>
         <% end %>
       </table>
     </div>

@@ -45,7 +45,7 @@ class Public::PostsController < ApplicationController
     if @post.save
       # 下書き(非公開)の場合
       if @post.is_draft
-        redirect_to customer_path(current_customer), notice: "下書き保存しました！"
+        redirect_to customer_draft_path(current_customer), notice: "下書き保存しました！"
       # 投稿(公開)の場合
       else
         redirect_to posts_path, notice: "投稿しました！"

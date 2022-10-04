@@ -12,11 +12,11 @@
         <table class="mx-auto table">
         <% @post.comments.each do |comment| %>
 
-
+          <tr>
           <td class="col-4"><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></td>
           <td class="col-4"><%= link_to  post_comment_path(@post,comment.id) do %><%= comment.comment %><% end %></td>
           <td class="col-4"><%= link_to customer_path(comment.customer.id) do %><%= comment.customer.name %><% end %></td>
-
+          </tr>
         <% end %>
       </table>
     </div>

@@ -7,7 +7,7 @@
         <p class="border-top">name:<%= link_to customer_path(@comment.customer.id) do %><%= @comment.customer.name %><% end %></p>
         </div>
          <% if @comment.customer == current_customer %>
-         <%= link_to '削除する', post_comment_path(@post,@comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-success" %>
+         <%= link_to '削除する', post_comment_path(@comment.post.id,@comment.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-success" %>
           <% end %>
     </div>
   </div>

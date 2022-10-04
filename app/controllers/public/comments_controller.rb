@@ -32,9 +32,9 @@ class Public::CommentsController < ApplicationController
   end
 
   def destroy
-    customer.customer_id = current_customer.id
+    # comment.customer = current_customer
     Comment.find(params[:id]).destroy
-    redirect_to root_path
+    redirect_to post_path(comment.post.id)
   end
 
   def show
@@ -45,6 +45,6 @@ class Public::CommentsController < ApplicationController
 
   private
    def comment_params
-   params.require(:comment).permit(:comment, :post_id)
+   params.require(:comment).permit(:comment, :post_id, :customer_id, :id)
    end
 end
