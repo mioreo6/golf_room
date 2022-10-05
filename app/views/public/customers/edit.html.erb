@@ -23,18 +23,15 @@
          <%= f.text_field :email %></br>
          </div>
 
-         <div>
-         <label class="col-3">会員ステータス</label>
-       　<%= f.radio_button :is_deleted, :false %>
-         <%= f.label :is_deleted, "有効" %>
-         <%= f.radio_button :is_deleted, :true %>
-         <%= f.label :is_deleted, "退会" %></br>
-         </div>
+
 
          <div>
          <label class="col-3"></label>
          <% if @customer.email != 'guest@example.com' %>
+         <% if @customer= current_customer %>
          <%= f.submit '変更を保存', class:"btn btn-success px-5" %>
+          <%= link_to "退会する", unsubscribe_path, class:"btn btn-danger px-3 ml-5" %>
+          <% end %>
          <% end %>
          </div>
 

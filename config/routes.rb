@@ -25,7 +25,8 @@ end
 
 devise_scope :public do
   root to: "public/homes#top"
-
+  get 'customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
+  patch 'customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
 #   post '/homes/guest_sign_in' => 'public/homes#guest_sign_in'
   get 'about' => 'public/homes#about', as: 'about'
   post 'posts/new' => 'public/posts#create'
@@ -41,8 +42,7 @@ devise_scope :public do
        get '/favorites' => 'favorites#all'
        get '/posts' => 'posts#all'
    end
-   get 'customers/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
-   patch 'customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
+
 end
 
 

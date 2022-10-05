@@ -5,7 +5,7 @@ class Public::CustomersController < ApplicationController
       redirect_to root_path, notice: "ゲストユーザーは閲覧のみです。"
     end
   end
-  
+
   def show
     @customer = Customer.find(params[:id])
   end
@@ -21,6 +21,13 @@ class Public::CustomersController < ApplicationController
    customer.update(customer_params)
    redirect_to customer_path(customer)
   end
+
+    def withdraw
+    @customer = current_customer
+    @customer.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
+    end
 
   def draft
     # @customer = current_customer
