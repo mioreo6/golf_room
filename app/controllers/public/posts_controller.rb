@@ -73,8 +73,8 @@ class Public::PostsController < ApplicationController
       @post.save
       redirect_to posts_path
     elsif params[:update_draft] #下書き（非公開）のまま更新
-      @post.update
-      redirect_to posts_path(@post)
+      @post.update(:post_params)
+      redirect_to customer_draft_path(current_customer)
     end
    else
      if @post.update(post_params) #投稿の更新
@@ -96,7 +96,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:body, :id, :created_at, :customer_id, :is_draft, tag_ids: [])
+    params.require(:post).permit(:body, :id, :created_at, :customer_id, :is_draft, :updated_at, tag_ids: [])
   end
 
 end
