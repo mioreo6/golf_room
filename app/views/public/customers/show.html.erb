@@ -24,14 +24,14 @@
           <% else %><span class="text-secondary font-weight-bold">退会</span>
           <% end %></br>
       </div>
-      <div class="col-2 mx-auto">
-        <span class="mx-auto">
+      <div class="col-5 mx-auto text-center">
+
          <% if @customer == current_customer %>
            <% if @customer.email != 'guest@example.com' %>
-           <%= link_to edit_customer_path(@customer.id) do %>編集<% end %>
+           <%= link_to '編集', edit_customer_path(@customer.id), class:"btn btn-success px-3" %>
            <% end %>
          <% end %>
-        <span>
+
       </div>
       <% if @customer.email == 'guest@example.com' %>
       ※ゲストユーザーは変更出来ません。
